@@ -6,8 +6,11 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import {connectToDatabase} from "./database/database.ts"
+import "./global.css";
+import "./styles/styles.css"
+import {Navbar} from "./gamecomponents/Navbar.tsx";
 
-import "../../tikuri/app/tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,6 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+      <Navbar/>
         {children}
         <ScrollRestoration />
         <Scripts />
