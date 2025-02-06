@@ -129,9 +129,10 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+/DS_Store
 /node_modules
 /public
 /.cache
 /build
 .env.d.ts
-app/src/database/database.ts
+src/src/database/database.ts
