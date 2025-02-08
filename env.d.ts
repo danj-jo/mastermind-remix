@@ -11,3 +11,14 @@ declare global {
         interface ProcessEnv extends ProcessEnv {}
     }
 }
+ declare module "express-session" {
+     interface SessionData {
+         isAuth: boolean
+         userId?: ObjectId
+         game?: SinglePlayerGameConfiguration
+         destroy: () => void
+         user: Player
+         difficulty: string
+        guesses?: string[]
+     }
+ }

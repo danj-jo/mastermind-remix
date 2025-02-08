@@ -4,18 +4,17 @@ import sessionClient from "../database/sessionClient.ts"
 import {ObjectId} from "mongodb";
 import {useActionData} from "@remix-run/react";
 import { redirect } from "@remix-run/node";
-export default function Login(){
-    const actionData = useActionData()
-    console.log(actionData)
+export default function loader(){
+    const data = useActionData<typeof action>();
     return (
-        <Form method="POST" id="login-form">
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" name="username" required/><br/>
-
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" required/><br/>
-            <button id="register-button" type="submit"> Login </button>
+        <div className="menu">
+            <h1 className = "title"> Login </h1>
+        <Form action="/login" id="login-form" method="POST">
+            <input placeholder ="username" className = "menu-button" type="text" id="username" name="username" required/><br/>
+            <input placeholder="password" className = "menu-button" type="password" id="password" name="password" required/><br/>
+            <button className = "menu-button" style = {{color: "#999", marginTop: "8%", border: "none"}} id="register-button" type="submit"> Register</button>
         </Form>
+        </div>
     )
 }
 
@@ -29,6 +28,8 @@ export async function action({request}: ActionFunctionArgs){
         const user: ObjectId | undefined = await client.validateUser(username.toString(), password.toString())
         if (!user) {
             console.log('no user.')
+            console.log(user)
+
         }
         return new Response('', {
             headers: {

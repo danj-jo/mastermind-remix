@@ -13,6 +13,7 @@ import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import {connectToDatabase} from "./database/database.ts";
 
+connectToDatabase().catch(err => console.log(err))
 const ABORT_DELAY = 5_000;
 export default function handleRequest(
   request: Request,

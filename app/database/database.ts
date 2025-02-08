@@ -1,5 +1,6 @@
 import {Collection, Db, MongoClient, ServerApiVersion} from 'mongodb';
-const DB_URI: string = process.env.DB_URI
+const DB_URI: string = process.env.DATABASE_URI ?? ''
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(DB_URI, {
     serverApi: {
@@ -19,5 +20,6 @@ export const connectToDatabase = async (): Promise<void> => {
     }
     catch (err: unknown) {
         console.error(`Err: ${err}`)
+        console.log(process.env.DB_URI)
     }
 }
